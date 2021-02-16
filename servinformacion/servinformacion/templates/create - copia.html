@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Comprador</title>
+</head>
+<body>
+<form method="POST">
+        {% csrf_token %}
+    <div class="container">
+      <br>
+      <h3>Ingrese la información del cliente</h3>
+    <label>Nombres:</label>
+      <div class="col-sm-4">
+        {{ form.nombre }}
+      </div>
+      <label>Apellidos:</label>
+       <div class="col-sm-4">
+         {{ form.apellido }}
+       </div>
+       <label>Dirección:</label>
+       <div class="col-sm-4">
+         {{ form.direccion }}
+       </div>
+       <label>Ciudad:</label>
+       <div class="col-sm-4">
+         {{ form.ciudad }}
+       </div>
+       <label>Longitud:</label>
+       <div class="col-sm-4">
+         {{ form.longitud }}
+       </div>
+       <label>Latitud:</label>
+       <div class="col-sm-4">
+         {{ form.latitud }}
+       </div>
+       <label>Estado_geo:</label>
+       <div class="col-sm-4">
+         {{ form.estado_geo }}
+       </div>
+       <button type="submit">Envíar</button>
+    </div>
+</form>
+</body>
+</html>

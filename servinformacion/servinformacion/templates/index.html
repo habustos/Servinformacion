@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado</title>
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+</head>
+<body>
+
+<div class="pro-head"> Usuario
+    <span>
+        {{ request.user.username }}
+    </span>
+</div>
+<div align="left" class="btn_crear mb-3">
+  <a href={% url 'logout' %} type="button" class="btn btn-primary">Cerrar sesión</a>
+</div>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+        <th>ID</th>
+        <th width="35%">Nombre</th>
+        <th>Apellidos</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for i in object_list %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.nombre }}</td>
+        <td>{{ i.apellido }}</td>
+      <td>
+
+        <form method="POST" action="delete/{{i.id}}">
+          {% csrf_token %}
+          <div class="btn-group">
+
+            <a href="details/{{i.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+            <a href="edit/{{i.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+            <button class="btn btn-danger" onclick="return delete();" type="submit">
+              Eliminar
+            </button>
+          </div>
+        </form>
+
+      </td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+<div align="left" class="btn_crear mb-3">
+  <a href="create" type="button" class="btn btn-primary">Crear</a>
+</div>
+{% bootstrap_javascript jquery='full' %}
+    <script type="text/javascript">
+      function delete() {
+        var x = confirm("Eliminar Producto ?");
+        if (x)
+          return true;
+        else
+          return false;
+      }
+    </script>
+</body>
+</html>
